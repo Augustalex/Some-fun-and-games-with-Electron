@@ -1,15 +1,13 @@
 var Item = require("./app/scripts/Item.js");
 
-function Player(){
+function Player(name, age){
 	var self = this;
 
 	var startBalance = 100;
 
-	this.init = function(name, age) {
-		self.name = name;
-		self.age = age;
-		self.balance = startBalance;
-	};
+	this.name = name;
+	this.age = age;
+	this.balance = startBalance;
 
 	this.pay = function(price){
 		if(price > self.balance){
