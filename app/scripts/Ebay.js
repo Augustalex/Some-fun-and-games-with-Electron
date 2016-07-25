@@ -1,3 +1,5 @@
+var Item = require("./app/scripts/Item.js");
+
 module.exports = function(){
     var inventory = new Inventory();
 
@@ -13,7 +15,22 @@ module.exports = function(){
 
         for(item in newItems)
             inventory.addItem(item);
-    }
+    };
+
+    this.getPrice = function(itemName){
+        return inventory.getItem(itemName).price;
+    };
+
+    this.buy = function(itemName, amount, payFunction){
+        var item = inventory.getItem(name);
+        if(!item)
+            return console.log("Item does not exist.");
+
+        if(payFunction(item.price))
+            item.use(amount);
+        else
+            return console.log("Insufficient funds.");
+    };
 
 };
 
@@ -28,10 +45,10 @@ function Inventory(){
     };
 
     this.addItem = function(item){
-        if(items[name])
+        if(items[item.name])
             return console.log("Item already exists.");
         else
-            items[name] = item;
+            items[item.name] = item;
     };
 
     this.addNewItem = function(name, price, amount){
@@ -57,19 +74,4 @@ function Inventory(){
     }
 
 
-}
-
-function Item(name, price, amount){
-    this.name = name;
-    this.price = price;
-    this.inStock = amount;
-
-    this.restock = function(amount){
-        this.inStock += amount;
-    };
-
-    this.use = function(amount){
-        this.inStock -= amount;
-        return this.inStock;
-    };
 }
