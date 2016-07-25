@@ -1,4 +1,3 @@
-
 function Company(name, value){
     this.name = name;
 
