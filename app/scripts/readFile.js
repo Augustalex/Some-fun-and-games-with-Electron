@@ -9,4 +9,4 @@ function logFile(filePath){
     });
 }
 
-module.exports.logFile = logFile;
+module.exports = logFile;

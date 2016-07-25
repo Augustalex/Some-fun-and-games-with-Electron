@@ -1,5 +1,3 @@
-var fsRead = require("./readFile.js");
+var Game = require("Game");
 
-fsRead.logFile("./app/text.txt");
-
-document.getElementById("test").innerHTML = "Hej August";
+var game = new Game();
