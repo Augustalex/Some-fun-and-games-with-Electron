@@ -33,7 +33,7 @@ function Player(){
 
 		this.restock = function(name, amount){
 			if(!items[name]) {
-				console.log("Can't restock nonexisting item.");
+				console.log("Can't restock nonexisting item: " + name);
 			}
 
 			else{
@@ -42,15 +42,20 @@ function Player(){
 		};
 
 		this.useItem = function(name, amount){
-			if(!items[name]) {
-				console.log("No such Item in inventory");
-			}
-			else{
+			if(!items[name]) 
+				console.log("No such Item in inventory: " + name);
+			else
 				items[name].use(amount);
-			}
 		};
 
-		this.calcOutcome
+		this.calculateOutcome(){
+			var outcome = 0;
+
+			for(var i = 0; i < items.length(); i ++)
+				outcome += items[i].cost
+
+			return outcome;
+		}
 
 	}
 
