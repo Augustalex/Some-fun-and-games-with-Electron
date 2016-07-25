@@ -1,5 +1,5 @@
 var fsRead = require("./readFile.js");
 
-fsRead.readText();
+fsRead.logFile("./app/text.txt");
 
 document.getElementById("test").innerHTML = "Hej August";

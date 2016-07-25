@@ -1,8 +1,7 @@
 var fs = require("fs");
 
-var globalPath = "./app/";
-function readText(){
-    fs.readFile(globalPath+"text.txt", function(err, data){
+function logFile(filePath){
+    fs.readFile(filePath, function(err, data){
         if(err)
             return console.log(err);
 
@@ -10,4 +9,4 @@ function readText(){
     });
 }
 
-module.exports.readText = readText;
+module.exports.logFile = logFile;
