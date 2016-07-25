@@ -1,6 +1,6 @@
 var fs = require("fs");
 
-var globalPath = "./electron-quick-start/app/";
+var globalPath = "./app/";
 function readText(){
     fs.readFile(globalPath+"text.txt", function(err, data){
         if(err)
