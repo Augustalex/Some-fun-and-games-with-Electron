@@ -1,7 +1,11 @@
+var FluxEngine = require("./FluxEngine.js");
+var Company = require("./Company.js");
 
 function StockMarket(){
     var companies = {};
     var accounts = {};
+
+    this.fluxEngine = new FluxEngine(this);
 
     this.newAccount = function(owner){
         if(accounts[owner])
@@ -10,11 +14,17 @@ function StockMarket(){
         accounts[owner] = new Account(owner);
     };
 
-    this.addCompany = function(name, value){
+    this.newCompany = function(name, value){
         if(companies[name])
             return console.log("Company already exists.");
 
         companies[name] = new Company(name, value);
+    };
+
+    this.tick = self.fluxEngine.tick();
+
+    this.stickProv = function(companyName){
+        console.log(companyName + ": " + companies[companyName].value);
     };
 }
 
@@ -54,26 +64,4 @@ function Investment(company){
     };
 }
 
-function Company(name, value){
-    this.name = name;
-
-    this.value = value;
-    this.shares = value;
-    this.freeShares = this.shares;
-
-    this.getShareValue = function(){
-        return (this.shares / this.value);
-    };
-
-    this.addShares = function(newShares){
-        this.shares += newShares;
-    };
-
-    this.buyShares = function(shares){
-        this.freeShares -= shares;
-    };
-
-    this.sellShares = function(shares){
-        this.freeShares += shares;
-    };
-}
+module.exports = StockMarket;

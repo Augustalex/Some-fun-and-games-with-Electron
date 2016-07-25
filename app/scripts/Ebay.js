@@ -1,4 +1,4 @@
-var Item = require("./app/scripts/Item.js");
+var Item = require("./Item.js");
 
 module.exports = function(){
     var inventory = new Inventory();

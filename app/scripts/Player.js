@@ -1,4 +1,4 @@
-var Item = require("./app/scripts/Item.js");
+var Item = require("./Item.js");
 
 function Player(name, age){
 	var self = this;
