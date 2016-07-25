@@ -1,7 +1,7 @@
-function Item(name, price, amount){
+function Item(name, price, amount, cost){
     this.name = name;
     this.price = price;
-    this.cost = 0;
+    this.cost = cost;
     this.inStock = amount;
 
     this.setCost = function(cost){
