@@ -9,9 +9,9 @@ function Player(){
 		self.name = name;
 		self.age = age;
 		self.balance = startBalance;
-	}
+	};
 
-	this.pay(price){
+	this.pay = function(price){
 		if(price > self.balance){
 			return null;
 		}
@@ -19,7 +19,7 @@ function Player(){
 			self.balance -= price;
 			return true;
 		}
-	}
+	};
 
 	this.inventory = function{
 		var items = {};
@@ -29,7 +29,7 @@ function Player(){
 				return console.log("Item already exists.");
 
 			items[item.name] = item;
-		}
+		};
 
 		this.restock = function(name, amount){
 			if(!items[name]) {
@@ -39,16 +39,16 @@ function Player(){
 			else{
 				items[name].restock(amount);
 			}
-		}
+		};
 
-		this.useItem(name, amount){
+		this.useItem = function(name, amount){
 			if(!items[name]) {
 				console.log("No such Item in inventory");
 			}
 			else{
 				items[name].use(amount);
 			}
-		}
+		};
 
 	}
 
