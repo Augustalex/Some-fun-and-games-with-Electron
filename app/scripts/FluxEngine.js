@@ -1,4 +1,4 @@
-var Company = require("Company.js");
+var Company = require("./Company.js");
 
 function FluxEngine(stockMarket){
     var self = this;
