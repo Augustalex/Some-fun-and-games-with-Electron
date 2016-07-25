@@ -1,7 +1,8 @@
 function Item(name, price, amount, cost){
     this.name = name;
     this.price = price;
-    this.cost = cost;
+    this.cost = cost || 0;
+
     this.inStock = amount;
 
     this.setCost = function(cost){

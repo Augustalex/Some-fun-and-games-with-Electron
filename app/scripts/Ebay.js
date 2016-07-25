@@ -7,10 +7,10 @@ module.exports = function(){
         var newItems = [
             new Item("iPhone", 6000, 1),
             new Item("Laptop", 12000, 1),
-            new Item("Apartment", 300000, 1),
-            new Item("Small House", 1200000, 1),
-            new Item("Large House", 8000000, 1),
-            new Item("Greece", 10000000, 1)
+            new Item("Apartment", 300000, 1, 4000),
+            new Item("Small House", 1200000, 1, 10000),
+            new Item("Large House", 8000000, 1, 25000),
+            new Item("Greece", 10000000, 1, 10000000)
         ];
 
         for(item in newItems)
