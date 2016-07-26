@@ -1,6 +1,9 @@
 var Item = require("./Item.js");
+var View = require("./View.js");
 
 module.exports = function(){
+    this.view = new View("Ebay", this);
+
     var inventory = new Inventory();
 
     this.init = function(){
@@ -14,7 +17,11 @@ module.exports = function(){
         ];
 
         for(item in newItems)
-            inventory.addItem(item);
+            inventory.addItem(newItems[item]);
+    };
+
+    this.getInventory = function(){
+        return inventory;
     };
 
     this.getPrice = function(itemName){
@@ -45,6 +52,7 @@ function Inventory(){
     };
 
     this.addItem = function(item){
+        console.log(item);
         if(items[item.name])
             return console.log("Item already exists.");
         else
@@ -71,6 +79,10 @@ function Inventory(){
         else
             return 0;
 
+    };
+
+    this.getItems = function(){
+        return items;
     }
 
 

@@ -1,0 +1,22 @@
+div.company, div.ebay-item{
+    margin-bottom: 1em;
+}
+
+h1, h2{
+    font-family: "Calibri";
+}
+
+h1{
+    font-weight: bold;
+    padding: 2%;
+    margin: 0;
+    background-color: lightcoral;
+
+}
+
+h2{
+    padding: 2%;
+    margin: 0;
+    background-color: lightskyblue;
+    font-weight: lighter;
+}

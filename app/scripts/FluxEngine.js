@@ -1,4 +1,5 @@
 var Company = require("./Company.js");
+var Trend = require("./Trend.js");
 
 function FluxEngine(stockMarket){
     var self = this;
@@ -10,50 +11,61 @@ function FluxEngine(stockMarket){
     var socialInstability = 1;
     var politicalInstability = 1;
 
-    this.scale = 1;
+    this.scale = 2;
+
+    this.globalTrend = new Trend();
 
     this.tick = function(){
-        var r_roof = 1.5;
-        var r = Math.random()*r_roof;
-
-        self.runEvents();
 
         var I = inflation * 0.4;
         var D = dept * 0.3;
         var S = socialInstability * 0.15;
         var P = politicalInstability * 0.15;
-        var a = r * I * D * S * P * self.scale;
 
-        for(company in self.market.companies) {
-            if (company === typeof(Company))
-                company.value *= a;
+        function getMagicRatio(trendParam){
+            var floor = 0.95;
+            var roof = 1.05;
+            var diff = roof-floor;
+
+            if(trendParam)
+                if(trendParam < 0)
+                    floor += diff * ((-1)*trendParam);
+                else if(trendParam > 0)
+                    roof -= diff * trendParam;
+
+            var r = randomScale(0.95, 1.05);
+            var a = r * (I + D + S + P);
+            a += (1 - a) * self.scale;
+
+            return a;
         }
-    };
 
-    this.runEvents = function(){
-        var roof = 1.5;
-        var floor = 0.5;
-        inflation *= randomScale(floor, roof);
-        dept *= randomScale(floor, roof);
-        socialInstability *= randomScale(floor, roof);
-        politicalInstability *= randomScale(floor, roof);
+        for(name in self.market.getCompanies()) {
+            var company = (self.market.getCompanies())[name];
+
+            var ratio = getMagicRatio(company.stockTrend.getPercentage());
+            company.value *= ratio;
+            company.stockTrend.addRatio(ratio);
+
+            self.globalTrend.addRatio(ratio);
+        }
+
     };
 
     function randomScale(floor, roof){
-        var rand = Math.random() * roof + floor;
-        if(rand > roof)
-            rand -= floor;
-
-        return rand;
+        r = (Math.random() * (roof-floor))+floor;
+        return r;
     }
 
-    function getRandomBool(){
-        var rand = Math.random();
-        if(rand < 0.5)
-            return 0;
-        else
-            return 1;
-    }
+    /* DEBUG FUNCTIONS          */
+    this.printProperties = function(){
+        console.log("\tPROPERTIES:");
+        console.log(inflation);
+        console.log(dept);
+        console.log(socialInstability);
+        console.log(politicalInstability);
+        console.log("\n\n");
+    };
 }
 
 module.exports = FluxEngine;

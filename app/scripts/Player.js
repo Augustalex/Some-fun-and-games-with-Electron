@@ -1,7 +1,10 @@
 var Item = require("./Item.js");
+var View = require("./View.js");
 
 function Player(name, age){
 	var self = this;
+
+	this.view = new View("Player", this);
 
 	var startBalance = 100;
 
@@ -19,7 +22,7 @@ function Player(name, age){
 		}
 	};
 
-	this.inventory = function{
+	this.inventory = function(){
 		var items = {};
 
 		this.addItem = function(item){
@@ -46,15 +49,17 @@ function Player(name, age){
 				items[name].use(amount);
 		};
 
-		this.calculateOutcome(){
+		this.calculateOutcome = function(){
 			var outcome = 0;
 
 			for(var i = 0; i < items.length(); i ++)
 				outcome += items[i].cost
 
 			return outcome;
-		}
+		};
 
-	}
+	};
 
 }
+
+module.exports = Player;

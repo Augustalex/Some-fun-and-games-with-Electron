@@ -1,11 +1,26 @@
 var FluxEngine = require("./FluxEngine.js");
 var Company = require("./Company.js");
+var View = require("./View.js");
 
 function StockMarket(){
+    var self = this;
+
+    this.view = new View("StockMarket", self);
+
     var companies = {};
     var accounts = {};
 
     this.fluxEngine = new FluxEngine(this);
+
+    this.init = function(){
+        self.newCompany("August Inc", 10);
+        self.newCompany("Josef Inc", 10);
+        self.newCompany("Apple Inc", 100);
+    };
+
+    this.tick = function(){
+        self.fluxEngine.tick();
+    };
 
     this.newAccount = function(owner){
         if(accounts[owner])
@@ -21,10 +36,18 @@ function StockMarket(){
         companies[name] = new Company(name, value);
     };
 
-    this.tick = self.fluxEngine.tick();
+    this.getCompanies = function(){
+        return companies;
+    };
 
-    this.stickProv = function(companyName){
-        console.log(companyName + ": " + companies[companyName].value);
+    /*  Debug Functions         */
+
+    this.printReport = function(){
+        for(name in companies){
+            var company = companies[name];
+            console.log("Company: " + company.name + "\tValue: " + company.value);
+        }
+
     };
 }
 

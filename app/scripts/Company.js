@@ -1,9 +1,13 @@
+var Trend = require("./Trend.js");
+
 function Company(name, value){
     this.name = name;
 
     this.value = value;
     this.shares = value;
     this.freeShares = this.shares;
+
+    this.stockTrend = new Trend();
 
     this.getShareValue = function(){
         return (this.shares / this.value);
