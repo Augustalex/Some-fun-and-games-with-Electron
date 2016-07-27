@@ -5,12 +5,19 @@ function Player(name, age){
 	var self = this;
 
 	this.view = new View("Player", this);
+	this.view.addSubView("PlayerStats");
+	this.view.addSubView("PlayerAccount");
+	this.view.addSubView("PlayerInventory");
 
 	var startBalance = 100;
 
 	this.name = name;
 	this.age = age;
 	this.balance = startBalance;
+
+    this.init = function(){
+
+    };
 
 	this.pay = function(price){
 		if(price > self.balance){

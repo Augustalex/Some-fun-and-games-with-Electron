@@ -1,6 +1,4 @@
 module.exports = function(){
-
-
     return(
         "<div id='player'>"+
             "<ul>" +
